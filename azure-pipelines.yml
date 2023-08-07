@@ -1,0 +1,12 @@
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    # Download and install Terraform
+    curl -fsSL -o terraform.zip https://releases.hashicorp.com/terraform/0.14.10/terraform_0.14.10_windows_amd64.zip
+    Expand-Archive terraform.zip -DestinationPath $env:USERPROFILE\bin
+    $env:PATH += ";$env:USERPROFILE\bin"
+    terraform --version
+  displayName: 'Install Terraform'
